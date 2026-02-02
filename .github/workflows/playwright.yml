@@ -1,0 +1,42 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Скачиваем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Устанавливаем Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3. Устанавливаем зависимости
+      - name: Install dependencies
+        run: |
+          npm install
+          npx playwright install
+
+      # 4. Запускаем тесты Playwright
+      - name: Run Playwright tests
+        run: npx playwright test --reporter=list
+
+      # 5. Загружаем артефакты (видео и скриншоты)
+      - name: Upload Playwright Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-artifacts
+          path: |
+            test-results
+            playwright-report
