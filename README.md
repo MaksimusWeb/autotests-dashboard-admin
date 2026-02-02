@@ -1,5 +1,9 @@
 # Автотесты для проекта [Дашборд-Админка](https://github.com/MaksimusWeb/admin-dashboard)
 
+![Playwright Tests](https://github.com/MaksimusWeb/dashboard-autotests/actions/workflows/playwright.yml/badge.svg)
+![Node.js](https://img.shields.io/badge/node-20-green)
+![Playwright](https://img.shields.io/badge/playwright-1.58.1-blue)
+
 ## Тестовые сценарии:
 
 1. <a id="login"></a>Логин в админку:
