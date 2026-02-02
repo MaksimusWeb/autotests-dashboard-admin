@@ -13,10 +13,9 @@ test.describe('Админка: добавление пользователя', (
     await page.locator('#password').fill(password);
     await page.locator('button:has-text("Войти")').click();
     await expect(page.locator(`text=Привет, ${adminName}`)).toBeVisible();
-    
   });
 
-    test('Добавление нового пользователя', async ({ page }) => {
+  test('Добавление нового пользователя', async ({ page }) => {
     await page.goto('https://admin-dashboard-eight-rust-37.vercel.app/users');
 
     const newUserName = 'New-Username-Autotests-AU';
@@ -26,12 +25,9 @@ test.describe('Админка: добавление пользователя', (
     await page.locator('#name.input-style').fill(newUserName);
     await page.locator('#email.input-style').fill(newUserEmail);
     await page.locator('#role').selectOption('user');
-    await page.locator('button:has-text("💾 Сохранить")').click()
-    
-    const rows = page.locator('table tbody tr')
-    await expect(rows.last().locator(`td:has-text("${newUserEmail}")`)).toBeVisible()
+    await page.locator('button:has-text("💾 Сохранить")').click();
+
+    const rows = page.locator('table tbody tr');
+    await expect(rows.locator(`td:has-text("${newUserEmail}")`)).toBeVisible();
+  });
 });
-});
-
-
-

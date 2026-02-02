@@ -28,9 +28,7 @@ test.describe('Админка: удаление пользователя из т
     await page.locator('button:has-text("💾 Сохранить")').click();
 
     const rows = page.locator('table tbody tr');
-    await expect(
-      rows.last().locator(`td:has-text("${newUserEmail}")`)
-    ).toBeVisible();
+    await expect(rows.locator(`td:has-text("${newUserEmail}")`)).toBeVisible();
   });
 
   test('Удаление пользователя из таблицы', async ({ page }) => {

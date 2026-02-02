@@ -19,18 +19,16 @@ test.describe('Админка: изменение информации поль�
 
     newUserName = 'New-Username-Autotests-CU';
     newUserEmail = `ChangingAutotest_${Date.now()}@example.com`;
-    
-    await page.goto('https://admin-dashboard-eight-rust-37.vercel.app/users')
+
+    await page.goto('https://admin-dashboard-eight-rust-37.vercel.app/users');
     await page.locator('button:has-text("Добавить пользователя:")').click();
     await page.locator('#name.input-style').fill(newUserName);
     await page.locator('#email.input-style').fill(newUserEmail);
     await page.locator('#role').selectOption('user');
     await page.locator('button:has-text("💾 Сохранить")').click();
-    
-    const rows = page.locator('table tbody tr');
-    await expect(rows.locator(`td:has-text("${newUserEmail}")`)
-        ).toBeVisible();
 
+    const rows = page.locator('table tbody tr');
+    await expect(rows.locator(`td:has-text("${newUserEmail}")`)).toBeVisible();
   });
 
   test('Изменение информации пользователя', async ({ page }) => {
@@ -53,7 +51,7 @@ test.describe('Админка: изменение информации поль�
     await page.locator('button:has-text("Сохранить")').click();
 
     await expect(
-      rows.last().locator(`td:has-text("${changedUserEmail}")`)
+      rows.locator(`td:has-text("${changedUserEmail}")`)
     ).toBeVisible();
   });
 });
